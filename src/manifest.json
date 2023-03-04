@@ -1,0 +1,41 @@
+{
+    "name": "Hispasonic Boost",
+    "version": "0.0.0.2",
+    "description": "Añade capacidades adicionales a Hispasonic: powersearch + ignore de usuarios",
+    "manifest_version": 3,
+    "author": "supertorpe",
+    "icons": {
+        "16": "icons/icon16.png",
+        "48": "icons/icon48.png",
+        "128": "icons/icon128.png"
+    },
+    "permissions": [
+        "tabs",
+        "storage"
+    ],
+    "externally_connectable": {
+        "matches": [
+            "https://www.hispasonic.com/*"
+        ]
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "https://www.hispasonic.com/foros/*"
+            ],
+            "js": [
+                "powersearch.js"
+            ],
+            "run_at": "document_end"
+        },
+        {
+            "matches": [
+                "https://www.hispasonic.com/*"
+            ],
+            "js": [
+                "blacklist.js"
+            ],
+            "run_at": "document_end"
+        }
+    ]
+}
