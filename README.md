@@ -1,2 +1,2 @@
 # hispasonic-boost
-Añade capacidades extra a hispasonic: powersearch + ignore users
+Extensión Chrome que añade capacidades extra a hispasonic: powersearch + ignore users
