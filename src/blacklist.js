@@ -142,11 +142,11 @@
     const hideIgnoredUsers = () => {
         loadBlacklist();
         blacklist.forEach(blItem => {
-            document.querySelectorAll(`.topic-post>.content>.header>a[href="/usuarios/${blItem.user}"]`).forEach(item => {
+            document.querySelectorAll(`.topic-post>.content>.header>a[href="/usuarios/${blItem.user.toLowerCase()}"]`).forEach(item => {
                 item.parentElement.parentElement.parentElement.style.display = 'none';
             });
             document.querySelectorAll(`.users-quote>cite`).forEach(item => {
-                if (item.innerText.startsWith(blItem.user) || item.innerText.startsWith(blItem.name)) item.parentElement.style.display = 'none';
+                if (item.innerText.toLowerCase().startsWith(blItem.user.toLowerCase()) || item.innerText.toLowerCase().startsWith(blItem.name.toLowerCase())) item.parentElement.style.display = 'none';
             });
         });
     };
