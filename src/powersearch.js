@@ -124,11 +124,14 @@
     const search = () => {
         const searchValue = txtsearch.value;
         if (searchValue === 'cache:clean') {
+            /*
             for (let key in localStorage) {
                 if (key.startsWith('hispasonic_cache_')) {
                     localStorage.removeItem(key);
                 }
             }
+            */
+            clear();
             txtsearch.value = '';
             return false;
         }
@@ -262,20 +265,20 @@
         searchUserPostsInPages(searchInfo);
     };
 
-    const searchUserPostsInPages = (searchInfo) => {
+    const searchUserPostsInPages = async (searchInfo) => {
         const url = (searchInfo.pageNum == 1 ? searchInfo.pageUrl : `${searchInfo.pageUrl}/pagina${searchInfo.pageNum}`);
-        let pageContent = localStorage[`hispasonic_cache_${url}`];
+        let pageContent = await idbKeyval.get(`hispasonic_cache_${url}`);
         if (pageContent) {
             pageContent = LZString.decompress(pageContent);
             processPage(searchInfo, pageContent);
         } else {
             const request = new XMLHttpRequest();
             request.open("GET", url);
-            request.onreadystatechange = function () {
+            request.onreadystatechange = async function () {
                 if (request.readyState === 4 && request.status === 200) {
                     let pageContent = request.responseText;
                     if (searchInfo.pageNum != searchInfo.lastPage) {
-                        try { localStorage[`hispasonic_cache_${url}`] = LZString.compress(pageContent); } catch (error) { console.log(error); }
+                        try { await idbKeyval.set(`hispasonic_cache_${url}`, LZString.compress(pageContent)); } catch (error) { console.log(error); }
                     }
                     processPage(searchInfo, pageContent);
                 }
@@ -370,22 +373,22 @@
 
     };
 
-    const searchSimilar = (searchInfo, searchUrls, currentDepth, maxDepth) => {
+    const searchSimilar = async (searchInfo, searchUrls, currentDepth, maxDepth) => {
         if (currentDepth > maxDepth) {
             return;
         }
-        searchUrls.forEach(url => {
-            let pageContent = localStorage[`hispasonic_cache_${url}`];
+        searchUrls.forEach(async url => {
+            let pageContent = await idbKeyval.get(`hispasonic_cache_${url}`);
             if (pageContent) {
                 pageContent = LZString.decompress(pageContent);
                 processPageSimilarPosts(url, searchInfo, currentDepth, maxDepth, pageContent);
             } else {
                 const request = new XMLHttpRequest();
                 request.open("GET", url);
-                request.onreadystatechange = function () {
+                request.onreadystatechange = async function () {
                     if (request.readyState === 4 && request.status === 200) {
                         let pageContent = request.responseText;
-                        try { localStorage[`hispasonic_cache_${url}`] = LZString.compress(pageContent); } catch (error) { console.log(error); }
+                        try { await idbKeyval.set(`hispasonic_cache_${url}`, LZString.compress(pageContent)); } catch (error) { console.log(error); }
                         processPageSimilarPosts(url, searchInfo, currentDepth, maxDepth, pageContent);
                     }
                 };

@@ -27,6 +27,7 @@
             "js": [
                 "powersearch.js",
                 "3dparty/fslightbox.js",
+                "3dparty/idb-keyval-umd.js",
                 "3dparty/lz-string.min.js",
                 "3dparty/modal.js"
             ],
