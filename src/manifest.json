@@ -11,13 +11,15 @@
     },
     "externally_connectable": {
         "matches": [
-            "https://www.hispasonic.com/*"
+            "https://www.hispasonic.com/*",
+            "https://www.guitarristas.info/*"
         ]
     },
     "content_scripts": [
         {
             "matches": [
-                "https://www.hispasonic.com/foros/*"
+                "https://www.hispasonic.com/foros/*",
+                "https://www.guitarristas.info/foros/*"
             ],
             "js": [
                 "powersearch.js"
@@ -26,7 +28,8 @@
         },
         {
             "matches": [
-                "https://www.hispasonic.com/*"
+                "https://www.hispasonic.com/*",
+                "https://www.guitarristas.info/*"
             ],
             "js": [
                 "blacklist.js"
