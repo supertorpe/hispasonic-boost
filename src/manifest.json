@@ -1,6 +1,6 @@
 {
     "name": "Hispasonic Boost",
-    "version": "0.0.0.2",
+    "version": "0.0.0.3",
     "description": "Añade capacidades adicionales a Hispasonic: powersearch + ignore de usuarios",
     "manifest_version": 3,
     "author": "supertorpe",
@@ -9,10 +9,6 @@
         "48": "icons/icon48.png",
         "128": "icons/icon128.png"
     },
-    "permissions": [
-        "tabs",
-        "storage"
-    ],
     "externally_connectable": {
         "matches": [
             "https://www.hispasonic.com/*"
