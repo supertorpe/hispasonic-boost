@@ -21,8 +21,14 @@
                 "https://www.hispasonic.com/foros/*",
                 "https://www.guitarristas.info/foros/*"
             ],
+            "css": [
+                "3dparty/modal.css"
+            ],
             "js": [
-                "powersearch.js"
+                "powersearch.js",
+                "3dparty/fslightbox.js",
+                "3dparty/lz-string.min.js",
+                "3dparty/modal.js"
             ],
             "run_at": "document_end"
         },
