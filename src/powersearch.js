@@ -98,7 +98,8 @@
             modal.open('hispasonic-power-modal');
         });
         window.addEventListener("message", function (msg) {
-            doModalSearch();
+            if (msg.data === 'hispasonic-power-search')
+                doModalSearch();
         });
     };
 
@@ -266,7 +267,9 @@
     };
 
     const searchUserPostsInPages = async (searchInfo) => {
-        const url = (searchInfo.pageNum == 1 ? searchInfo.pageUrl : `${searchInfo.pageUrl}/pagina${searchInfo.pageNum}`);
+        let baseUrl = window.location.href;
+        baseUrl = baseUrl.substring(0,baseUrl.indexOf("/",10));
+        const url = baseUrl + (searchInfo.pageNum == 1 ? searchInfo.pageUrl : `${searchInfo.pageUrl}/pagina${searchInfo.pageNum}`);
         let pageContent = await idbKeyval.get(`hispasonic_cache_${url}`);
         if (pageContent) {
             pageContent = LZString.decompress(pageContent);
