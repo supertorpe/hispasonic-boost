@@ -135,7 +135,24 @@
         initMyAccountUI();
     }
 
-    ///// FORUM /////
+    ///// FORUM LIST /////
+
+    const topics = document.querySelector('.topics');
+
+    const hideIgnoredTopics = () => {
+        console.log(1);
+        loadBlacklist();
+        blacklist.forEach(blItem => {
+            console.log(JSON.stringify(blItem));
+            [...document.querySelectorAll('.topic>.data>.first-post>span')]
+                .filter(span => span.textContent.toLowerCase() == blItem.name.toLowerCase())
+                .forEach(item => {
+                    item.parentElement.parentElement.parentElement.parentElement.style.display = 'none';
+                });
+        });
+    };
+
+    ///// FORUM POST /////
 
     const topicPosts = document.querySelector('.topic-posts');
 
@@ -151,7 +168,9 @@
         });
     };
 
-    if (topicPosts) {
+    if (topics) {
+        hideIgnoredTopics();
+    } else if (topicPosts) {
         hideIgnoredUsers();
     }
 
