@@ -14,12 +14,12 @@
 
     const particles = ['de:', 'dir:', 'tam:', 'txt:', 'sim:', 'gal:'];
 
-    const txtsearch = document.querySelector('.input-topicsearch');
-    const btnsearch = document.querySelector('.btn-topicsearch');
-    let topicPosts, topicsGroup;
+    const txtsearch = document.querySelector('.query-forums');
+    const btnsearch = document.querySelector('#search_form_forums > div > button');
+    let topicPosts = document.querySelector('.topic-posts');
+    let topicsGroup = document.querySelector('.topics');
 
     const init = () => {
-
         topicPosts = document.querySelector('.topic-posts');
         topicsGroup = document.querySelector('.topics');
 
@@ -39,7 +39,7 @@
 
     const initUI = () => {
         // PowerSearch button
-        btnsearch.insertAdjacentHTML('afterend', '<button id="btn-power-search" type="button" class="btn btn-primary">Power Search</button>');
+        btnsearch.insertAdjacentHTML('afterend', '<button id="btn-power-search" type="button" class="btn btn-primary" style="margin:0">Power Search</button>');
         const modalHtml = `<div id="hispasonic-power-modal" class="block" style="display: none">
         <div class="header">
             <h2>Búsqueda</h2>
@@ -425,8 +425,7 @@
         });
         searchSimilar(searchInfo, simPostsUrls, currentDepth + 1, maxDepth);
     };
-
-    if (txtsearch && btnsearch) {
+    if (txtsearch && btnsearch && topicPosts) {
         init();
     }
 
