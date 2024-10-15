@@ -1,6 +1,6 @@
 {
     "name": "Hispasonic | Guitarristas Boost",
-    "version": "0.0.2.0",
+    "version": "0.0.3.0",
     "description": "Añade capacidades adicionales a Hispasonic.com y Guitarristas.info: powersearch + ignore de usuarios",
     "manifest_version": 3,
     "author": "supertorpe",
