@@ -140,10 +140,8 @@
     const topics = document.querySelector('.topics');
 
     const hideIgnoredTopics = () => {
-        console.log(1);
         loadBlacklist();
         blacklist.forEach(blItem => {
-            console.log(JSON.stringify(blItem));
             [...document.querySelectorAll('.topic>.data>.first-post>span')]
                 .filter(span => span.textContent.toLowerCase() == blItem.name.toLowerCase())
                 .forEach(item => {
@@ -168,10 +166,10 @@
         });
     };
 
-    if (topics) {
-        hideIgnoredTopics();
-    } else if (topicPosts) {
+    if (topicPosts) {
         hideIgnoredUsers();
+    } else {
+        hideIgnoredTopics();
     }
 
 })();
